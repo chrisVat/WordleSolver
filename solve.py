@@ -6,17 +6,18 @@ best_starting_words_general = ['adieu', 'cramp', 'crane', 'crate', 'raise', 'roa
                                'salet', 'saucy', 'soare', 'stare', 'trace']
 best_starting_words_hard_mode = ['cramp', 'salet']
 
+# use list is the starting words that will all be used
 USE_LIST = best_starting_words_general
-#USE_LIST = best_starting_words_hard_mode
 
 DISPLAY_PER_WORD = False
-TARGETS = ["zebra", "buddy", "adage", "inlay", "thigh"]
 
+# list of targets to solve for
+TARGETS = ["zebra", "buddy", "adage", "inlay", "thigh"]
 
 argparser = argparse.ArgumentParser()
 argparser.add_argument("--target_words", type=list, default=TARGETS, help="The word to solve for.")
 argparser.add_argument("--start_guesses", type=list, default=USE_LIST, help="The starting guess.")
-argparser.add_argument("--word_source", type=str, default="minimal_wordle_list.txt", help="The source of the word list.")
+argparser.add_argument("--word_source", type=str, default="data/minimal_wordle_list.txt", help="The source of the word list.")
 argparser.add_argument("--verbose", type=bool, default=False, help="Whether to print verbose output.")
 argparser.add_argument("--display_guesses", type=bool, default=False, help="Whether to print guesses.")
 
