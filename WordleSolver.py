@@ -110,6 +110,33 @@ class WordleSolver:
     def solve_wordle(self, target_word):
         return self.flatten(self.solve_wordle_recursive(target_word, self.possible_words, self.start_guess, 0))
 
+
+    def perform_guess(self, guess, target_word, possible_words):
+        feedback = self.evaluate_guess(guess, target_word)
+        possible_words = self.reduce_possible_words(guess, feedback, possible_words)
+        return possible_words
+
+    def test_dad(self, word_list, target):        
+        possible_words = self.possible_words.copy()
+        for word in word_list:
+            possible_words = self.perform_guess(word, target, possible_words)
+        print(possible_words)
+        exit()
+
+        guesses = self.choose_best_guess(possible_words, self.technique)
+
+        print(possible_words)
+        print(len(possible_words))
+        #exit()
+
+        guess = "ocean"
+        feedback = self.evaluate_guess(guess, target)
+        possible_words = self.reduce_possible_words(guess, feedback, possible_words)
+        print(possible_words)
+
+
+
+
     def solve_wordle_recursive(self, target_word, possible_words, guess, guess_num=0):        
         if possible_words is None:
             possible_words = self.possible_words.copy()
@@ -133,4 +160,5 @@ class WordleSolver:
         guesses = self.choose_best_guess(possible_words, self.technique)
         
         return [self.solve_wordle_recursive(target_word, possible_words, guess, guess_num) for guess in guesses]
-        
+
+
